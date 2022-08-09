@@ -1,0 +1,77 @@
+﻿@page "/"
+@implements IDisposable
+@using AutoMapper
+
+@inject IDbContextFactory<NorthwindContext> NorthwindContextFactory
+
+@if(IsLoading) {
+    <text>Loading...</text>
+}else {
+    <DxGrid Data="Products" EditModelSaving="OnEditModelSaving">
+        <Columns>
+            <DxGridCommandColumn DeleteButtonVisible="false" VisibleIndex="0" />
+            <DxGridDataColumn FieldName="ProductName" />
+            <DxGridDataColumn FieldName="UnitPrice" DisplayFormat="c" />
+            <DxGridDataColumn FieldName="UnitsInStock"  />
+            <DxGridDataColumn FieldName="UnitsOnOrder"  />
+            <DxGridDataColumn FieldName="QuantityPerUnit"  />
+            <DxGridDataColumn FieldName="Discontinued" />     
+        </Columns>
+        <EditFormTemplate Context="EditFormContext">
+        @{
+            var product = (Product)EditFormContext.EditModel;
+        }
+        <DxFormLayout>
+            <DxFormLayoutItem Caption="Product Name:">
+                <DxTextBox @bind-Text="@product.ProductName" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Unit Price:">
+                <DxSpinEdit T="decimal?" @bind-Value="@product.UnitPrice" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Units In Stock:">
+                <DxSpinEdit @bind-Value="@product.UnitsInStock" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Units On Order:">
+                <DxSpinEdit @bind-Value="@product.UnitsOnOrder" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Quantity Per Unit:">
+                <DxTextBox @bind-Text="@product.QuantityPerUnit" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Discontinued:">
+                <DxCheckBox @bind-Checked="@product.Discontinued" />
+            </DxFormLayoutItem>
+        </DxFormLayout>
+    </EditFormTemplate>
+    </DxGrid>
+}
+
+@code {
+    NorthwindContext Northwind { get; set; }
+    List<Product> Products { get; set; }
+    IMapper ProductMapper { get; set; }
+    bool IsLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync() {
+        var config = new MapperConfiguration(c => c.CreateMap<Product, Product>());
+        ProductMapper = config.CreateMapper();
+        Northwind = NorthwindContextFactory.CreateDbContext();
+        Products = await Northwind.Products.ToListAsync();
+        IsLoading = false;
+    }
+
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e) {  
+        var editableProduct = (Product)e.EditModel;
+        var product = e.IsNew
+            ? new Product()
+            : (Product)e.DataItem;
+        ProductMapper.Map<Product, Product>(editableProduct, product);
+        if(e.IsNew)
+            await Northwind.Products.AddAsync(product);
+        await Northwind.SaveChangesAsync();
+        Products = await Northwind.Products.ToListAsync();
+    }
+
+    public void Dispose() {
+        Northwind?.Dispose();
+    }
+}
