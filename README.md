@@ -1,14 +1,14 @@
-# Grid for Blazor - How to automatically post changes to a bound data source
+# Grid for Blazor - How to instantly update all fields of the data item on saving
 
-When a users completes editing a row in the [DxGrid](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid), it is necessary to save the changes to the bound data source. This example demonstrates how to use the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library to automaticaly save changes in the in-memory object and not copy each property value mannually.
+When a user starts editing a row, the [DxGrid](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid) creates an edit model - a copy of the processed data item. This model stores all changes, and the data item remains intact. You should copy the edit model's property values to the data item's properties to save changes. This example demonstrates how to use the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library to instantly update all fields of the original data item.
 
-![Blazor DxGrid automatically post changes](images/automatically-post-changes.png)
+![Blazor DxGrid instantly update all fields of the processed data item](images/automatically-post-changes.png)
+
+The [EditModelSaving](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.EditModelSaving) event occurs when a users completes editing a row. Use the event argument's [EditModel](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridEditModelSavingEventArgs.EditModel) property to access the edit model. The [DataItem](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridEditModelSavingEventArgs.DataItem) property allows you to access the proccessed data item.
 
 ## Files to Look At
 
-- [Index.razor](./CS/AutomaticallyPostChanges/Pages/Index.razor)
-- [Index.razor](./CS/AutomaticallyPostChanges/Data/Northwind/EditableProduct.cs)
-- [Index.razor](./CS/AutomaticallyPostChanges/Data/Northwind/Product.cs)
+- [Index.razor](./CS/UpdateDataItemFields/Pages/Index.razor)
 
 ## Documentation
 
