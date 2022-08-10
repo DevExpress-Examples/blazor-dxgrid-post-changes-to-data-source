@@ -2,7 +2,7 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1108021)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-# Grid for Blazor - How to instantly update all fields of an in memory data record on saving
+# Grid for Blazor - How to optimize the proccess of posting changes to an in memory data source
 
 You can use an external library or a helper class to optimize the proccess of posting changes to an in memory data source. This example uses the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library to instantly update all fields of an in memory data record and avoid manually setting the value of each field.
 
