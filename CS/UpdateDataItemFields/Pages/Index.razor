@@ -7,7 +7,7 @@
 @if(IsLoading) {
     <text>Loading...</text>
 }else {
-    <DxGrid Data="Products" EditModelSaving="OnEditModelSaving">
+    <DxGrid Data="Products" EditModelSaving="OnEditModelSaving" EditMode="GridEditMode.EditRow">
         <Columns>
             <DxGridCommandColumn DeleteButtonVisible="false" VisibleIndex="0" />
             <DxGridDataColumn FieldName="ProductName" />
@@ -17,31 +17,6 @@
             <DxGridDataColumn FieldName="QuantityPerUnit"  />
             <DxGridDataColumn FieldName="Discontinued" />     
         </Columns>
-        <EditFormTemplate Context="EditFormContext">
-        @{
-            var product = (Product)EditFormContext.EditModel;
-        }
-        <DxFormLayout>
-            <DxFormLayoutItem Caption="Product Name:">
-                <DxTextBox @bind-Text="@product.ProductName" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Unit Price:">
-                <DxSpinEdit T="decimal?" @bind-Value="@product.UnitPrice" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Units In Stock:">
-                <DxSpinEdit @bind-Value="@product.UnitsInStock" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Units On Order:">
-                <DxSpinEdit @bind-Value="@product.UnitsOnOrder" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Quantity Per Unit:">
-                <DxTextBox @bind-Text="@product.QuantityPerUnit" />
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Discontinued:">
-                <DxCheckBox @bind-Checked="@product.Discontinued" />
-            </DxFormLayoutItem>
-        </DxFormLayout>
-    </EditFormTemplate>
     </DxGrid>
 }
 
