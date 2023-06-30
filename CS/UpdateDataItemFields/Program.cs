@@ -10,11 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDevExpressBlazor();
-builder.Services.AddEntityFrameworkSqlServer();
+builder.Services.AddEntityFrameworkSqlite();
 builder.Services.AddDbContextFactory<NorthwindContext>((sp, options) => {
     var env = sp.GetRequiredService<IWebHostEnvironment>();
-    var dbPath = Path.Combine(env.ContentRootPath, "Northwind-5e44b51f.mdf");
-    options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=" + dbPath);
+    var dbPath = Path.Combine(env.ContentRootPath, "Northwind.db");
+    options.UseSqlite("Data Source=" + dbPath);
 });
 builder.Services.Configure<DevExpress.Blazor.Configuration.GlobalOptions>(options => {
     options.BootstrapVersion = DevExpress.Blazor.BootstrapVersion.v5;
