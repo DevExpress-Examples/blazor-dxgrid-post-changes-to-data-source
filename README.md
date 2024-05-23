@@ -1,5 +1,4 @@
 <!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/522844306/23.1.3%2B)
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1108021)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
@@ -14,7 +13,6 @@ The [EditModelSaving](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGri
 Use one of the following variants to save changes made in the edit model:
 
 - Call the [CopyChangesToDataItem](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridEditModelSavingEventArgs.CopyChangesToDataItem) method.
-
 - Install the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library and call its `Map` method to assign all edit model field values to corresponding data item fields simultaneously.
 
 ## Files to Review
