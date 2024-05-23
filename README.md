@@ -5,7 +5,7 @@
 <!-- default badges end -->
 # Grid for Blazor - How to post changes to an in-memory data source
 
-When a user starts editing a row, our Blazor Grid ([DxGrid](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid)) creates an edit model - a copy of the processed data item. This model stores all changes while the original data item remains intact. You need to update the data source to save changes. This example uses the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library to update all field values of an in-memory data record.
+When a user starts editing a row, our Blazor Grid ([DxGrid](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid)) creates an edit model - a copy of the processed data item. This model stores all changes while the original data item remains intact. You need to update the data source to save changes.
 
 ![Blazor DxGrid instantly update all fields of the processed data item](/images/update-all-fields.png)
 
