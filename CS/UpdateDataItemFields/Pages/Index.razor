@@ -27,6 +27,7 @@
     bool IsLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync() {
+        // Configure Automapper
         var config = new MapperConfiguration(c => c.CreateMap<Product, Product>());
         ProductMapper = config.CreateMapper();
         Northwind = NorthwindContextFactory.CreateDbContext();
