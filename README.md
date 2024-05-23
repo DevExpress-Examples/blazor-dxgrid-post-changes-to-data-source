@@ -11,7 +11,11 @@ When a user starts editing a row, our Blazor Grid ([DxGrid](https://docs.devexpr
 
 The [EditModelSaving](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.EditModelSaving) event fires when a user completes row edits and allows you to save changes. Use the event argument's [EditModel](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridEditModelSavingEventArgs.EditModel) property to access the edit model. The [DataItem](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridEditModelSavingEventArgs.DataItem) property allows you to access the proccessed data item as requirements dictate.
 
-Install the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library and call its `Map` method to assign all edit model field values to corresponding data item fields simultaneously.
+Use one of the following variants to save changes made in the edit model:
+
+- Call the [CopyChangesToDataItem](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridEditModelSavingEventArgs.CopyChangesToDataItem) method.
+
+- Install the [AutoMapper](https://github.com/AutoMapper/AutoMapper) library and call its `Map` method to assign all edit model field values to corresponding data item fields simultaneously.
 
 ## Files to Review
 

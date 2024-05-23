@@ -36,12 +36,16 @@
 
     async Task OnEditModelSaving(GridEditModelSavingEventArgs e) {  
         var editableProduct = (Product)e.EditModel;
+        // Variant 1: CopyChangesToDataItem
+        e.CopyChangesToDataItem();
+        // Variant 2: AutoMapper
         var product = e.IsNew
             ? new Product()
             : (Product)e.DataItem;
         ProductMapper.Map<Product, Product>(editableProduct, product);
         if(e.IsNew)
             await Northwind.Products.AddAsync(product);
+        // Save changes in both variants
         await Northwind.SaveChangesAsync();
         Products = await Northwind.Products.ToListAsync();
     }
