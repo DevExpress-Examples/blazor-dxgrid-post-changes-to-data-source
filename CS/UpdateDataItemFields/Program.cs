@@ -16,9 +16,7 @@ builder.Services.AddDbContextFactory<NorthwindContext>((sp, options) => {
     var dbPath = Path.Combine(env.ContentRootPath, "Northwind.db");
     options.UseSqlite("Data Source=" + dbPath);
 });
-builder.Services.Configure<DevExpress.Blazor.Configuration.GlobalOptions>(options => {
-    options.BootstrapVersion = DevExpress.Blazor.BootstrapVersion.v5;
-});
+
 builder.WebHost.UseWebRoot("wwwroot");
 builder.WebHost.UseStaticWebAssets();
 
