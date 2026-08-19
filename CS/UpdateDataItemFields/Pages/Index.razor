@@ -1,6 +1,7 @@
 ﻿@page "/"
 @implements IDisposable
 @using AutoMapper
+@using Microsoft.Extensions.Logging.Abstractions
 
 @inject IDbContextFactory<NorthwindContext> NorthwindContextFactory
 
@@ -28,7 +29,7 @@
 
     protected override async Task OnInitializedAsync() {
         // Configure Automapper
-        var config = new MapperConfiguration(c => c.CreateMap<Product, Product>());
+        var config = new MapperConfiguration(c => c.CreateMap<Product, Product>(), NullLoggerFactory.Instance);
         ProductMapper = config.CreateMapper();
         Northwind = NorthwindContextFactory.CreateDbContext();
         Products = await Northwind.Products.ToListAsync();
